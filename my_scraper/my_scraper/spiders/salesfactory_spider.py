@@ -1,5 +1,6 @@
 import scrapy
-from my_scraper.items import SalesFactoryItem
+# from my_scraper.items import SalesFactoryItem # Old import
+from my_scraper.items import GeneralPageContentItem # New import
 
 
 class SalesfactorySpiderSpider(scrapy.Spider):
@@ -8,6 +9,8 @@ class SalesfactorySpiderSpider(scrapy.Spider):
     start_urls = ["https://salesfactory.com/"]
 
     def parse(self, response):
-        item = SalesFactoryItem()
+        # item = SalesFactoryItem() # Old item instantiation
+        item = GeneralPageContentItem() # New item instantiation
         item['page_content'] = response.body.decode('utf-8')
+        item['source_url'] = response.url # Populate the source URL
         yield item
