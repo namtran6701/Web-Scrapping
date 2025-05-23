@@ -1,16 +1,16 @@
 import scrapy
-# from my_scraper.items import SalesFactoryItem # Old import
-from my_scraper.items import GeneralPageContentItem # New import
+# from my_scraper.items import RedbookIndexItem # Old item
+from my_scraper.items import GeneralPageContentItem # New item for general content
 
 
 class SalesfactorySpiderSpider(scrapy.Spider):
     name = "salesfactory_spider"
-    allowed_domains = ["salesfactory.com"]
-    start_urls = ["https://salesfactory.com/"]
+    allowed_domains = ["https://www.salesfactory.com/"]
+    start_urls = ["https://www.salesfactory.com/"]
 
     def parse(self, response):
-        # item = SalesFactoryItem() # Old item instantiation
-        item = GeneralPageContentItem() # New item instantiation
+        item = GeneralPageContentItem() 
         item['page_content'] = response.body.decode('utf-8')
-        item['source_url'] = response.url # Populate the source URL
+        item['source_url'] = response.url
+
         yield item
