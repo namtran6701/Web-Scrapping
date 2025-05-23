@@ -12,3 +12,9 @@ class MyScraperItem(scrapy.Item):
 class GeneralPageContentItem(scrapy.Item):
     page_content = scrapy.Field()
     source_url = scrapy.Field() # Added to track the source
+
+class RagPageItem(scrapy.Item):
+    source_url = scrapy.Field()
+    title = scrapy.Field()        # The page title
+    main_content_text = scrapy.Field() # Just the text from the main content area
+    # You could add more fields later, like headings, paragraphs, etc.
